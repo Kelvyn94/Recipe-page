@@ -38,7 +38,7 @@ Mobile:
 ### Links
 
 - Solution URL: [[https://github.com/Kelvyn94/blog-preview-card](https://github.com/Kelvyn94/Recipe-page)]
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [[Add live site URL here](https://kelvyn94.github.io/Recipe-page/)]
 
 ## My process
 
