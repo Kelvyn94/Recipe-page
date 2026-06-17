@@ -1,18 +1,45 @@
-@import url(https://fonts.googleapis.com/css?family=Outfit:100,200,300,regular,500,600,700,800,900);
-@import url(https://fonts.googleapis.com/css?family=Young+Serif:regular);
+/* CSS Variables at the top */
+:root {
+  /* Primary Colors */
+  --nutmeg: hsl(14, 45%, 36%);
+  --dark-raspberry: hsl(332, 51%, 32%);
+  
+  /* Neutral Colors */
+  --white: hsl(0, 0%, 100%);
+  --rose-white: hsl(330, 100%, 98%);
+  --eggshell: hsl(30, 54%, 90%);
+  --light-grey: hsl(30, 18%, 87%);
+  --wenge-brown: hsl(30, 10%, 34%);
+  --dark-charcoal: hsl(24, 5%, 18%);
+  
+  /* Typography */
+  --font-primary: "Outfit", sans-serif;
+  --font-secondary: "Young Serif", serif;
+  
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1.25rem;
+  --spacing-lg: 1.75rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 2.5rem;
+}
+
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Body - using CSS variables and clamp() */
 body {
-  background-color: hsl(30, 54%, 90%);
-  font-family: "Outfit", sans-serif;
-  font-size: 1rem;
+  background-color: var(--eggshell);
+  font-family: var(--font-primary);
+  font-size: clamp(0.875rem, 2vw, 1rem);
   line-height: 1.5;
-  color: hsl(30, 10%, 34%);
-  padding: 0;
+  color: var(--wenge-brown);
+  padding: clamp(1rem, 3vw, 2rem);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,133 +47,122 @@ body {
   justify-content: center;
 }
 
-/* Main container  */
+/* Main container - using clamp() */
 .recipe-container {
-  max-width: 46rem;
+  max-width: clamp(20rem, 90vw, 46rem);
   margin: 0 auto;
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--white);
   border-radius: 1.5rem;
   overflow: hidden;
   box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, 0.05);
-  padding: 2.5rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-/* Image styling  */
+/* Image styling - using logical properties */
 .recipe-image {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 0.75rem;
-  margin-top: 0; /* Remove any top margin */
+  margin-block-start: 0; /* Logical property */
 }
 
 .recipe-content {
   padding: 2rem 1.5rem;
 }
-/* Headings */
+
+/* Headings - using CSS variables */
 h1 {
-  font-family: "Young Serif", serif;
+  font-family: var(--font-secondary);
   font-weight: 800;
   font-size: 2.5rem;
   line-height: 1.2;
-  color: hsl(24, 5%, 18%);
-  margin-bottom: 1.25rem;
+  color: var(--dark-charcoal);
+  margin-bottom: var(--spacing-md);
 }
 
 h2 {
-  font-family: "Young Serif", serif;
+  font-family: var(--font-secondary);
   font-weight: 400;
   font-size: 1.75rem;
-  color: hsl(14, 45%, 36%);
-  margin-top: 1.5rem;
-  margin-bottom: 1.25rem;
+  color: var(--nutmeg);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
-h3 {
-  font-family: "Outfit", sans-serif;
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: hsl(332, 51%, 32%);
-  margin-bottom: 0.75rem;
-}
-
-/* Description text  */
+/* Description */
 .description {
-  color: hsl(30, 10%, 34%);
-  margin-bottom: 1.75rem;
+  color: var(--wenge-brown);
+  margin-bottom: var(--spacing-lg);
 }
 
-/* Preparation time box  */
+/* Preparation box */
 .prep-box {
-  background-color: hsl(330, 100%, 98%);
-  padding: 1.75rem;
-  margin-bottom: 1.75rem;
+  background-color: var(--rose-white);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 }
 
 .prep-box ul {
-  margin-left: 1.25rem;
-  color: hsl(30, 10%, 34%);
+  margin-left: var(--spacing-md);
+  color: var(--wenge-brown);
 }
 
 .prep-box li {
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-xs);
   padding-left: 1rem;
 }
 
 .prep-box li::marker {
-  color: hsl(332, 51%, 32%);
+  color: var(--dark-raspberry);
   font-size: 0.75rem;
 }
 
 .ingredients {
-  padding-left: 2.5rem;
+  padding-left: var(--spacing-xxl);
 }
 
 .ingredients li {
-  padding-bottom: 0.5rem;
+  padding-bottom: var(--spacing-xs);
 }
 
-ol {
-  padding-left: 1.5rem;
-}
-
+/* Ordered lists - specific ordering */
 ol li {
-  padding-left: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-left: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
 }
 
 b,
 strong {
-  color: hsl(24, 5%, 18%);
+  color: var(--dark-charcoal);
   font-weight: 700;
 }
 
-/* Grey separator line above Instructions */
+/* Separators */
 .instructions-section {
-  border-top: 0.0625rem solid hsl(30, 18%, 87%); /* Stone 150 */
-  padding-top: 1.75rem;
-  margin-top: 0.5rem;
+  border-top: 0.0625rem solid var(--light-grey);
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-xs);
 }
 
-/* Grey separator line above Nutrition */
 .nutrition-section {
-  border-top: 0.0625rem solid hsl(30, 18%, 87%); /* Stone 150 */
-  padding-top: 1.75rem;
-  margin-top: 0.5rem;
+  border-top: 0.0625rem solid var(--light-grey);
+  padding-top: var(--spacing-lg);
+  margin-top: var(--spacing-xs);
 }
 
-/* Table styling - no header  */
+/* Table */
 .nutrition-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xs);
 }
 
 .nutrition-table td {
-  padding: 0.75rem 0;
-  border-bottom: 0.0625rem solid hsl(30, 18%, 87%);
-  font-family: "Outfit", sans-serif;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 0.0625rem solid var(--light-grey);
+  font-family: var(--font-primary);
 }
 
 .nutrition-table tr:last-child td {
@@ -154,62 +170,91 @@ strong {
 }
 
 .nutrition-table td:first-child {
-  padding-left: 2rem;
+  padding-left: var(--spacing-xl);
   font-weight: 400;
-  color: hsl(30, 10%, 34%);
+  color: var(--wenge-brown);
 }
 
 .nutrition-table td:last-child {
   font-weight: 700;
-  color: hsl(14, 45%, 36%);
+  color: var(--nutmeg);
 }
 
-/* Horizontal rules  */
 hr {
   border: none;
   height: 0.0625rem;
-  background-color: hsl(30, 18%, 87%);
-  margin: 1.75rem 0;
+  background-color: var(--light-grey);
+  margin: var(--spacing-lg) 0;
 }
 
-/* Mobile first - small screens */
-@media (max-width: 23.4375rem) {
+/* Mobile-first approach */
+/* Base styles for mobile */
+.recipe-content {
+  padding: 1.5rem 1.25rem;
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+.prep-box {
+  padding: 1.25rem;
+}
+
+.nutrition-table td:first-child {
+  padding-left: var(--spacing-xs);
+}
+
+ol li {
+  padding-left: var(--spacing-xxl);
+}
+
+ol li::before {
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.75rem;
+}
+
+ul li {
+  padding-left: 1.5rem;
+}
+
+.prep-box li {
+  padding-left: 1.5rem;
+}
+
+/* Tablet and up */
+@media (min-width: 23.4375rem) {
   .recipe-content {
-    padding: 1.5rem 1.25rem;
+    padding: 2rem 1.5rem;
   }
-
+  
   h1 {
-    font-size: 1.75rem;
+    font-size: 2.5rem;
   }
-
+  
   .prep-box {
-    padding: 1.25rem;
+    padding: var(--spacing-lg);
   }
-
+  
   .nutrition-table td:first-child {
-    padding-left: 0.5rem;
+    padding-left: var(--spacing-xl);
   }
-
+  
   ol li {
-    padding-left: 2.5rem;
+    padding-left: var(--spacing-xs);
   }
-
-  ol li::before {
-    width: 1.5rem;
-    height: 1.5rem;
-    font-size: 0.75rem;
-  }
-
+  
   ul li {
-    padding-left: 1.5rem;
+    padding-left: var(--spacing-xxl);
   }
-
+  
   .prep-box li {
-    padding-left: 1.5rem;
+    padding-left: 1rem;
   }
 }
 
-/* Print styles (Additional stylings)*/
+/* Print styles */
 @media print {
   body {
     background-color: white;
