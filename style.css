@@ -90,6 +90,14 @@ h2 {
   margin-bottom: var(--spacing-md);
 }
 
+.prep-heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: var(--spacing-md);
+  color: var(--dark-raspberry);
+  margin-bottom: var(--spacing-sm);
+  margin-top: 0;
+
 /* Description */
 .description {
   color: var(--wenge-brown);
