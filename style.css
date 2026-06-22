@@ -39,7 +39,8 @@ body {
   font-size: clamp(0.875rem, 2vw, 1rem);
   line-height: 1.5;
   color: var(--wenge-brown);
-  padding: clamp(1rem, 3vw, 2rem);
+  padding-block: clamp(1rem, 3vw, 2rem); /* Logical properties */
+  padding-inline: clamp(1rem, 3vw, 2rem);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +51,7 @@ body {
 /* Main container - using clamp() */
 .recipe-container {
   max-width: clamp(20rem, 90vw, 46rem);
-  margin: 0 auto;
+  margin-inline: auto; /* Logical property */
   background-color: var(--white);
   border-radius: 1.5rem;
   overflow: hidden;
@@ -64,21 +65,23 @@ body {
   height: auto;
   display: block;
   border-radius: 0.75rem;
-  margin-block-start: 0; /* Logical property */
+  margin-block-start: 0;
 }
 
+/* Mobile-first: Base styles for all screen sizes */
 .recipe-content {
-  padding: 2rem 1.5rem;
+  padding-block: 1.5rem; /* Logical properties */
+  padding-inline: 1.25rem;
 }
 
 /* Headings - using CSS variables */
 h1 {
   font-family: var(--font-secondary);
   font-weight: 800;
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   line-height: 1.2;
   color: var(--dark-charcoal);
-  margin-bottom: var(--spacing-md);
+  margin-block-end: var(--spacing-md); /* Logical property */
 }
 
 h2 {
@@ -86,8 +89,8 @@ h2 {
   font-weight: 400;
   font-size: 1.75rem;
   color: var(--nutmeg);
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
+  margin-block-start: var(--spacing-lg);
+  margin-block-end: var(--spacing-md);
 }
 
 .prep-heading {
@@ -95,30 +98,31 @@ h2 {
   font-weight: 600;
   font-size: var(--spacing-md);
   color: var(--dark-raspberry);
-  margin-bottom: var(--spacing-sm);
-  margin-top: 0;
+  margin-block-end: var(--spacing-sm);
+  margin-block-start: 0;
+}
 
 /* Description */
 .description {
   color: var(--wenge-brown);
-  margin-bottom: var(--spacing-lg);
+  margin-block-end: var(--spacing-lg);
 }
 
 /* Preparation box */
 .prep-box {
   background-color: var(--rose-white);
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
+  padding: 1.25rem; /* Mobile-first */
+  margin-block-end: var(--spacing-lg);
 }
 
 .prep-box ul {
-  margin-left: var(--spacing-md);
+  margin-inline-start: var(--spacing-md);
   color: var(--wenge-brown);
 }
 
 .prep-box li {
-  margin-bottom: var(--spacing-xs);
-  padding-left: 1rem;
+  margin-block-end: var(--spacing-xs);
+  padding-inline-start: 1.5rem; /* Mobile-first, logical property */
 }
 
 .prep-box li::marker {
@@ -127,17 +131,37 @@ h2 {
 }
 
 .ingredients {
-  padding-left: var(--spacing-xxl);
+  padding-inline-start: var(--spacing-xxl);
 }
 
 .ingredients li {
-  padding-bottom: var(--spacing-xs);
+  padding-block-end: var(--spacing-xs);
 }
 
-/* Ordered lists - specific ordering */
+/* Ordered lists - specific ordering (least to most specific) */
+ol {
+  margin: 0;
+  padding: 0;
+  list-style-position: outside;
+}
+
+/* Base ol li styles (least specific) */
 ol li {
-  padding-left: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
+  padding-inline-start: var(--spacing-xxl); /* Mobile-first */
+  padding-block-end: var(--spacing-xs);
+  margin-block-end: var(--spacing-xs);
+  position: relative;
+}
+
+/* Prep-box list items (more specific) */
+.prep-box li {
+  padding-inline-start: 1.5rem;
+}
+
+/* Nutrition section items (most specific if needed) */
+.nutrition-section ol li,
+.nutrition-section ul li {
+  padding-inline-start: var(--spacing-xs);
 }
 
 b,
@@ -149,36 +173,37 @@ strong {
 /* Separators */
 .instructions-section {
   border-top: 0.0625rem solid var(--light-grey);
-  padding-top: var(--spacing-lg);
-  margin-top: var(--spacing-xs);
+  padding-block-start: var(--spacing-lg);
+  margin-block-start: var(--spacing-xs);
 }
 
 .nutrition-section {
   border-top: 0.0625rem solid var(--light-grey);
-  padding-top: var(--spacing-lg);
-  margin-top: var(--spacing-xs);
+  padding-block-start: var(--spacing-lg);
+  margin-block-start: var(--spacing-xs);
 }
 
 /* Table */
 .nutrition-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: var(--spacing-lg);
-  margin-bottom: var(--spacing-xs);
+  margin-block-start: var(--spacing-lg);
+  margin-block-end: var(--spacing-xs);
 }
 
 .nutrition-table td {
-  padding: var(--spacing-sm) 0;
-  border-bottom: 0.0625rem solid var(--light-grey);
+  padding-block: var(--spacing-sm);
+  padding-inline: 0;
+  border-block-end: 0.0625rem solid var(--light-grey);
   font-family: var(--font-primary);
 }
 
 .nutrition-table tr:last-child td {
-  border-bottom: none;
+  border-block-end: none;
 }
 
 .nutrition-table td:first-child {
-  padding-left: var(--spacing-xl);
+  padding-inline-start: var(--spacing-xs); /* Mobile-first */
   font-weight: 400;
   color: var(--wenge-brown);
 }
@@ -192,49 +217,15 @@ hr {
   border: none;
   height: 0.0625rem;
   background-color: var(--light-grey);
-  margin: var(--spacing-lg) 0;
+  margin-block: var(--spacing-lg);
+  margin-inline: 0;
 }
 
-/* Mobile-first approach */
-/* Base styles for mobile */
-.recipe-content {
-  padding: 1.5rem 1.25rem;
-}
-
-h1 {
-  font-size: 1.75rem;
-}
-
-.prep-box {
-  padding: 1.25rem;
-}
-
-.nutrition-table td:first-child {
-  padding-left: var(--spacing-xs);
-}
-
-ol li {
-  padding-left: var(--spacing-xxl);
-}
-
-ol li::before {
-  width: 1.5rem;
-  height: 1.5rem;
-  font-size: 0.75rem;
-}
-
-ul li {
-  padding-left: 1.5rem;
-}
-
-.prep-box li {
-  padding-left: 1.5rem;
-}
-
-/* Tablet and up */
+/* Tablet and up - using min-width (mobile-first) */
 @media (min-width: 23.4375rem) {
   .recipe-content {
-    padding: 2rem 1.5rem;
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
   }
   
   h1 {
@@ -246,19 +237,20 @@ ul li {
   }
   
   .nutrition-table td:first-child {
-    padding-left: var(--spacing-xl);
+    padding-inline-start: var(--spacing-xl);
   }
   
+  /* More specific selectors for tablet and up */
   ol li {
-    padding-left: var(--spacing-xs);
-  }
-  
-  ul li {
-    padding-left: var(--spacing-xxl);
+    padding-inline-start: var(--spacing-xs);
   }
   
   .prep-box li {
-    padding-left: 1rem;
+    padding-inline-start: 1rem;
+  }
+  
+  ul li {
+    padding-inline-start: var(--spacing-xxl);
   }
 }
 
