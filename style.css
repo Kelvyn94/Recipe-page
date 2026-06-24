@@ -225,7 +225,7 @@ hr {
   }
 
   .prep-box li {
-    padding-inline-start: 1rem;
+    padding-inline-start: var(--spacing-xl);
   }
   
   /* More specific selectors for tablet and up */
