@@ -93,15 +93,6 @@ h2 {
   margin-block-end: var(--spacing-md);
 }
 
-.prep-heading {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: var(--spacing-md);
-  color: var(--dark-raspberry);
-  margin-block-end: var(--spacing-sm);
-  margin-block-start: 0;
-}
-
 /* Description */
 .description {
   color: var(--wenge-brown);
@@ -113,6 +104,15 @@ h2 {
   background-color: var(--rose-white);
   padding: 1.25rem; /* Mobile-first */
   margin-block-end: var(--spacing-lg);
+}
+
+.prep-heading {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: var(--spacing-md);
+  color: var(--dark-raspberry);
+  margin-block-end: var(--spacing-sm);
+  margin-block-start: 0;
 }
 
 .prep-box ul {
@@ -138,6 +138,13 @@ h2 {
   padding-block-end: var(--spacing-xs);
 }
 
+/* Separators */
+.instructions-section {
+  border-top: 0.0625rem solid var(--light-grey);
+  padding-block-start: var(--spacing-lg);
+  margin-block-start: var(--spacing-xs);
+}
+
 /* Ordered lists - specific ordering (least to most specific) */
 ol {
   margin: 0;
@@ -153,30 +160,7 @@ ol li {
   position: relative;
 }
 
-/* Prep-box list items (more specific) */
-.prep-box li {
-  padding-inline-start: 1.5rem;
-}
-
 /* Nutrition section items (most specific if needed) */
-.nutrition-section ol li,
-.nutrition-section ul li {
-  padding-inline-start: var(--spacing-xs);
-}
-
-b,
-strong {
-  color: var(--dark-charcoal);
-  font-weight: 700;
-}
-
-/* Separators */
-.instructions-section {
-  border-top: 0.0625rem solid var(--light-grey);
-  padding-block-start: var(--spacing-lg);
-  margin-block-start: var(--spacing-xs);
-}
-
 .nutrition-section {
   border-top: 0.0625rem solid var(--light-grey);
   padding-block-start: var(--spacing-lg);
@@ -239,14 +223,14 @@ hr {
   .nutrition-table td:first-child {
     padding-inline-start: var(--spacing-xl);
   }
+
+  .prep-box li {
+    padding-inline-start: 1rem;
+  }
   
   /* More specific selectors for tablet and up */
   ol li {
     padding-inline-start: var(--spacing-xs);
-  }
-  
-  .prep-box li {
-    padding-inline-start: 1rem;
   }
   
   ul li {
@@ -268,11 +252,11 @@ hr {
     padding: 1rem;
   }
 
-  .attribution {
-    display: none;
+   .prep-box {
+    break-inside: avoid;
   }
 
-  .prep-box {
-    break-inside: avoid;
+  .attribution {
+    display: none;
   }
 }
